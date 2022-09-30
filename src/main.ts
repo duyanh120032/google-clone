@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import { createHead } from '@vueuse/head'
 import App from './App.vue'
 import './registerServiceWorker'
 import { setUpGlobalComponents } from './plugins/setUpGlobalComponents'
@@ -13,6 +14,8 @@ function setUpPlugins() {
 }
 
 async function setupApp() {
+  const head = createHead()
+  app.use(head)
   await setupRouter(app)
   app.mount('#app')
 }

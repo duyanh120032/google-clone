@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { Head } from '@vueuse/head'
 import autoBotApi from '@/api/autoBotApi'
 import type{ ISearch } from '@/api/type'
 import { millisecondsToSeconds, numberWithCommas } from '@/utils/common'
@@ -13,6 +14,7 @@ const onSearch = () => {
   if (input.value)
     router.replace({ query: { q: input.value } })
 }
+const query = computed(() => route.query.q)
 async function search() {
   isLoading.value = true
   const start = performance.now()
@@ -45,10 +47,31 @@ const infoboxesList = computed(() => {
     return []
   return results.value.infoboxes
 })
+const content = computed(() => {
+  return `Results for ${route.query.q}`
+})
 watch(() => route.query.q, () => search())
 </script>
 
 <template>
+  <Head>
+    <title>Search - {{ query }}</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://autobot.co.id/">
+    <meta property="og:title" :content="content">
+    <meta property="og:description" content="Autobot Search">
+    <meta property="og:image" content="https://picsum.photos/500/300">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://autobot.co.id/">
+    <meta property="twitter:title" :content="content">
+    <meta property="twitter:description" content="Autobot Search">
+    <meta property="twitter:image" content="https://picsum.photos/1920/1080">
+  </Head>
   <div class="px-3 mx-auto mt-8 max-w-7xl">
     <div class="flex items-center mb-2 space-x-3">
       <div class="relative flex items-center space-x-2 cursor-pointer" @click="router.push('/')">
