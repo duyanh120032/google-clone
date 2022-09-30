@@ -66,11 +66,10 @@ watch(() => route.query.q, () => search())
     <meta property="og:image:height" content="512">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://autobot.co.id/">
-    <meta property="twitter:title" :content="content">
-    <meta property="twitter:description" content="Autobot Search">
-    <meta property="twitter:image" content="https://picsum.photos/1920/1080">
+    <meta name="twitter:title" content="Google Clone">
+    <meta name="twitter:description" :content="content">
+    <meta name="twitter:image" content="https://vueschool.io/media/f007f6057444d9a7f567163391d2b366/vuejs-3-master-class-not-transparent.jpg">
+    <meta name="twitter:card" content="summary_large_image">
   </Head>
   <div class="px-3 mx-auto mt-8 max-w-7xl">
     <div class="flex items-center mb-2 space-x-3">
